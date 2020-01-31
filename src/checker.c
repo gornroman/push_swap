@@ -335,9 +335,9 @@ int 		ft_do_cmd(char *cmd, t_stacks *s)
 	if (len == 2 && cmd[0] == 'p' && cmd[1] == 'b')
 		res = ft_cmd_p(&s->a, &s->b);
 	if (len == 2 && cmd[0] == 'r' && (cmd[1] == 'r' || cmd[1] == 'a'))
-		res = ft_cmd_r(&s->b);
-	if (len == 2 && cmd[0] == 'r' && (cmd[1] == 'r' || cmd[1] == 'b'))
 		res = ft_cmd_r(&s->a);
+	if (len == 2 && cmd[0] == 'r' && (cmd[1] == 'r' || cmd[1] == 'b'))
+		res = ft_cmd_r(&s->b);
 	if (len == 3 && cmd[0] == 'r' && cmd[1] == 'r' && (cmd[2] == 'r' || cmd[2] == 'a'))
 		res = ft_cmd_rr(&s->a);
 	if (len == 3 && cmd[0] == 'r' && cmd[1] == 'r' && (cmd[2] == 'r' || cmd[2] == 'b'))

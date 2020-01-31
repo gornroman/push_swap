@@ -1,16 +1,12 @@
 cmake_minimum_required(VERSION 3.15)
-project(push_swap2)
+project(pushswapgit)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(.)
 include_directories(includes)
-include_directories(libft)
 include_directories(libft/includes)
-include_directories(libft/src)
-include_directories(src)
 
-add_executable(push_swap2
+add_executable(pushswapgit
         includes/push_swap.h
         libft/includes/get_next_line.h
         libft/includes/libft.h
@@ -83,4 +79,7 @@ add_executable(push_swap2
         libft/Makefile
         src/checker.c
         src/push_swap.c
-        author)
+        author
+        checker
+        Makefile
+        todo.txt)

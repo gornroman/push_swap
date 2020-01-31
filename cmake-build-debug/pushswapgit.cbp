@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="pushswapgit"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/romangorn/Desktop/pushswapgit/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/romangorn/Desktop/pushswapgit/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/romangorn/Desktop/pushswapgit/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pushswapgit">
+				<Option output="/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/pushswapgit" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/romangorn/Desktop/pushswapgit/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/romangorn/Desktop/pushswapgit/includes"/>
+					<Add directory="/Users/romangorn/Desktop/pushswapgit/libft/includes"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 pushswapgit"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pushswapgit/fast">
+				<Option output="/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/pushswapgit" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/romangorn/Desktop/pushswapgit/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/romangorn/Desktop/pushswapgit/includes"/>
+					<Add directory="/Users/romangorn/Desktop/pushswapgit/libft/includes"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 pushswapgit/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/Makefile">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/author">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/checker">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/includes/push_swap.h">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/Makefile">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/author">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/includes/get_next_line.h">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/includes/libft.h">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_atoi.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_bzero.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_isalnum.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_isalpha.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_isascii.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_isdigit.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_isprint.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_itoa.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_lstadd.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_lstdel.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_lstdelone.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_lstiter.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_lstmap.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_lstnew.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_memalloc.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_memccpy.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_memchr.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_memcmp.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_memcpy.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_memdel.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_memmove.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_memset.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_putchar.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_putchar_fd.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_putendl.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_putendl_fd.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_putnbr.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_putnbr_fd.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_putstr.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_putstr_fd.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_str_is_alpha.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_str_is_lowercase.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_str_is_numeric.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_str_is_printable.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_str_is_uppercase.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strcat.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strchr.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strclr.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strcmp.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strcpy.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strdel.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strdup.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strequ.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_striter.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_striteri.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strjoin.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strlcat.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strlen.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strmap.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strmapi.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strncat.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strncmp.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strncpy.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strndup.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strnequ.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strnew.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strnstr.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strrchr.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strsplit.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strstr.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strsub.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_strtrim.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_tolower.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/ft_toupper.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/libft/src/get_next_line.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/src/checker.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/src/push_swap.c">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/todo.txt">
+			<Option target="pushswapgit"/>
+		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

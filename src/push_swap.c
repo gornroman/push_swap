@@ -106,7 +106,9 @@ int 		ft_find_i_max_sort(t_stack *s)
 	int 	max;
 	int 	prev;
 	int 	new_max;
+	int		ind;
 
+	ind = 0;
 	prev = s->val;
 	new_max = 0;
 	max = 0;
@@ -119,6 +121,7 @@ int 		ft_find_i_max_sort(t_stack *s)
 			if (new_max > max)
 			{
 				max = new_max;
+				ind = s->i - max;
 			}
 		}
 		else
@@ -126,7 +129,7 @@ int 		ft_find_i_max_sort(t_stack *s)
 		prev = s->val;
 		s = s->next;
 	}
-	return (max + 1);
+	return (ind);
 }
 
 void		ft_print_cmd(char	*cmd)
@@ -140,7 +143,11 @@ void		ft_move_unsort(t_stacks *s)
 	int 	i_max_sort;
 
 	ft_index(s->a);
-	i_max_sort = ft_find_i_max_sort(s->a);
+//	i_max_sort = ft_get_slen(s->a) - ft_find_i_max_sort(s->a) >= 3 ? ft_find_i_max_sort(s->a) : ;
+	if (ft_get_slen(s->a) - ft_find_i_max_sort(s->a) >= 3)
+		i_max_sort = ft_find_i_max_sort(s->a);
+	else
+		i_max_sort = ft_get_slen(s->a) - 3;
 //	printf("index: %d\n", i_max_sort);
 //	while (i_max_sort--)
 	ft_do_cmd_0("pb", i_max_sort, s);
@@ -171,18 +178,58 @@ void		ft_move_unsort_2(t_stacks *s)
 {
 	int		i;
 
-	i = ft_get_slen(s->a) - ft_find_i_after_sort(s->a);
+	if (ft_find_i_after_sort(s->a) < 3)
+		i = ft_get_slen(s->a) - 3;
+	else
+		i = ft_get_slen(s->a) - ft_find_i_after_sort(s->a);
 	ft_do_cmd_0("rra", i, s);
 	ft_do_cmd_0("pb", i, s);
 }
 
+void	ft_sort_3(t_stacks *s)
+{
+	if (s->a->val > s->a->next->val && s->a->val < s->a->next->next->val)
+		ft_do_cmd_0("sa", 1, s);
+	else if (s->a->val > s->a->next->next->val)
+		ft_do_cmd_0("rra", 1, s);
+}
+
+int			ft_is_sorted_1(t_stack *s)
+{
+	t_stack	*tmp;
+	int		last_value;
+
+	tmp = s;
+	last_value = tmp->val;
+	while (tmp)
+	{
+		if (last_value > tmp->val)
+			return (0);
+		last_value = tmp->val;
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 void		ft_start_pushing(t_stacks *s)
 {
-	ft_print_stack3(s);
-	ft_move_unsort(s);
-	ft_print_stack3(s);
-	ft_move_unsort_2(s);
-	ft_print_stack3(s);
+	if (ft_get_slen(s->a) == 2 && ft_is_sorted_1(s->a) == 0)
+		ft_do_cmd_0("sa", 1, s);
+	else if (ft_get_slen(s->a) == 3 && ft_is_sorted_1(s->a) == 0)
+		ft_sort_3(s);
+	else if (ft_get_slen(s->a) == 5 && ft_is_sorted_1(s->a) == 0)
+		printf("5elemetns algo\n");
+	else if (ft_is_sorted_1(s->a) == 0)
+	{
+		ft_print_stack3(s);
+		ft_move_unsort(s);
+		ft_print_stack3(s);
+		ft_move_unsort_2(s);
+		ft_print_stack3(s);
+		if (ft_is_sorted_1(s->a) == 0)
+			ft_sort_3(s);
+		ft_print_stack3(s);
+	}
 }
 
 int			main(int argc, char **argv)
