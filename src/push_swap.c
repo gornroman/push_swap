@@ -229,7 +229,7 @@ void		ft_move_unsort_2(t_stacks *s)
 //		ft_do_cmd_0("ra", 1, s);
 //}
 
-void	ft_sort_3(t_stacks *s)
+void		ft_sort_3(t_stacks *s)
 {
 	if (s->a->val > s->a->next->val)
 	{
@@ -272,6 +272,35 @@ int			ft_is_sorted_1(t_stack *s)
 	return (1);
 }
 
+int 		ft_swap(t_stacks *s)
+{
+	int 	min_i;
+
+	min_i = 0;
+	//узнать индекс
+	//узнать расположение А и Б (1/2/3/4)
+	//считать маршрут (1/2/3/4)
+	return (min_i);
+}
+
+void 		ft_start_swaping(t_stacks *s)
+{
+	int 	min_i;
+	int 	i;
+
+	i = 0;
+	min_i = 100000;
+	ft_index(s->a);
+	ft_index(s->b);
+	while (s->b)
+	{
+		i = ft_swap(s);
+		if (i < min_i)
+			i = min_i;
+		s->b = s->b->next;
+	}
+}
+
 void		ft_start_pushing(t_stacks *s)
 {
 	if (ft_get_slen(s->a) == 2 && ft_is_sorted_1(s->a) == 0)
@@ -292,6 +321,7 @@ void		ft_start_pushing(t_stacks *s)
 			ft_sort_3(s);
 		ft_print_stack3(s);
 	}
+	ft_start_swaping(s);
 }
 
 int			main(int argc, char **argv)
