@@ -153,6 +153,37 @@ void		ft_move_unsort(t_stacks *s)
 	ft_do_cmd_0("pb", i_max_sort, s);
 }
 
+int 		ft_find_i_after_sort2(t_stack *s)
+{
+	int 	max;
+	int 	prev;
+	int 	new_max;
+	int		ind;
+
+	ind = 0;
+	prev = s->val;
+	new_max = 0;
+	max = 0;
+	s = s->next;
+	while (s)
+	{
+		if (s->val > prev)
+		{
+			new_max++;
+			if (new_max > max)
+			{
+				max = new_max;
+				ind = s->i;
+			}
+		}
+		else
+			new_max = 0;
+		prev = s->val;
+		s = s->next;
+	}
+	return (ind + 1);
+}
+
 int 		ft_find_i_after_sort(t_stack *s)
 {
 	int 	i;
@@ -165,8 +196,10 @@ int 		ft_find_i_after_sort(t_stack *s)
 	s = s->next;
 	while (s)
 	{
-		if (s->val < prev)
+		if (s->val > prev)
 			i_after_sort = i;
+		else
+			i_after_sort = 0;
 		prev = s->val;
 		s = s->next;
 		i++;
@@ -178,10 +211,10 @@ void		ft_move_unsort_2(t_stacks *s)
 {
 	int		i;
 
-	if (ft_find_i_after_sort(s->a) < 3)
+	if (ft_find_i_after_sort2(s->a) < 3)
 		i = ft_get_slen(s->a) - 3;
 	else
-		i = ft_get_slen(s->a) - ft_find_i_after_sort(s->a);
+		i = ft_get_slen(s->a) - ft_find_i_after_sort2(s->a);
 	ft_do_cmd_0("rra", i, s);
 	ft_do_cmd_0("pb", i, s);
 }
@@ -224,11 +257,12 @@ void		ft_start_pushing(t_stacks *s)
 		ft_print_stack3(s);
 		ft_move_unsort(s);
 		ft_print_stack3(s);
+		ft_index(s->a);
 		ft_move_unsort_2(s);
 		ft_print_stack3(s);
 		if (ft_is_sorted_1(s->a) == 0)
 			ft_sort_3(s);
-		ft_print_stack3(s);
+//		ft_print_stack3(s);
 	}
 }
 
