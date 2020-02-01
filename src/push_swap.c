@@ -150,6 +150,8 @@ void		ft_move_unsort(t_stacks *s)
 		i_max_sort = ft_get_slen(s->a) - 3;
 //	printf("index: %d\n", i_max_sort);
 //	while (i_max_sort--)
+	if (i_max_sort == 0 && ft_get_slen(s->a) > 3)
+		i_max_sort = ft_get_slen(s->a) - 3;
 	ft_do_cmd_0("pb", i_max_sort, s);
 }
 
@@ -219,12 +221,38 @@ void		ft_move_unsort_2(t_stacks *s)
 	ft_do_cmd_0("pb", i, s);
 }
 
+//void	ft_sort_3(t_stacks *s)
+//{
+//	if (s->a->val > s->a->next->val && s->a->val < s->a->next->next->val)
+//		ft_do_cmd_0("sa", 1, s);
+//	else if (s->a->val > s->a->next->next->val)
+//		ft_do_cmd_0("ra", 1, s);
+//}
+
 void	ft_sort_3(t_stacks *s)
 {
-	if (s->a->val > s->a->next->val && s->a->val < s->a->next->next->val)
-		ft_do_cmd_0("sa", 1, s);
-	else if (s->a->val > s->a->next->next->val)
-		ft_do_cmd_0("rra", 1, s);
+	if (s->a->val > s->a->next->val)
+	{
+		if (s->a->val < s->a->next->next->val)
+			ft_do_cmd_0("sa", 1, s);
+		else if (s->a->next->next->val > s->a->next->val)
+			ft_do_cmd_0("ra", 1, s);
+		else
+		{
+			ft_do_cmd_0("sa", 1, s);
+			ft_do_cmd_0("rra", 1, s);
+		}
+	}
+	else
+	{
+		if (s->a->val < s->a->next->next->val)
+		{
+			ft_do_cmd_0("sa", 1, s);
+			ft_do_cmd_0("ra", 1, s);
+		}
+		else
+			ft_do_cmd_0("rra", 1, s);
+	}
 }
 
 int			ft_is_sorted_1(t_stack *s)
@@ -262,7 +290,7 @@ void		ft_start_pushing(t_stacks *s)
 		ft_print_stack3(s);
 		if (ft_is_sorted_1(s->a) == 0)
 			ft_sort_3(s);
-//		ft_print_stack3(s);
+		ft_print_stack3(s);
 	}
 }
 
