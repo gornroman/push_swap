@@ -414,16 +414,20 @@ void		ft_do_route1(t_stacks *s)
 {
 	int 	min;
 	int 	max;
+	char 	*cmd;
 
+	cmd = ft_strnew(3);
 	if (s->ind_b < s->ind_a)
 	{
 		min = s->ind_b;
 		max = s->ind_a;
+		cmd = "ra";
 	}
 	else
 	{
 		min = s->ind_a;
 		max = s->ind_b;
+		cmd = "rb";
 	}
 	if (s->ind_b == 0)
 	{
@@ -434,11 +438,10 @@ void		ft_do_route1(t_stacks *s)
 	else
 	{
 		ft_do_cmd_0("rr", min, s);
-		ft_do_cmd_0("ra", (max - min), s);
+		ft_do_cmd_0(cmd, (max - min), s);
 		ft_do_cmd_0("pa", 1, s);
 		ft_do_cmd_0("rra", s->ind_a, s);
 	}
-//	way = min + (max - min) + 1 + a_ind;
 }
 
 void		ft_do_route2(t_stacks *s)
@@ -447,13 +450,16 @@ void		ft_do_route2(t_stacks *s)
 	int 	max;
 	int 	len_min;
 	int 	len_max;
+	char 	*cmd;
 
+	cmd = ft_strnew(4);
 	if (s->len_b - s->ind_b < s->len_a - s->ind_a)
 	{
 		min = s->ind_a;
 		len_min = s->len_a;
 		max = s->ind_b;
 		len_max = s->len_b;
+		cmd = "rra";
 	}
 	else
 	{
@@ -461,16 +467,17 @@ void		ft_do_route2(t_stacks *s)
 		len_min = s->len_b;
 		max = s->ind_a;
 		len_max = s->len_a;
+		cmd = "rrb";
 	}
 	ft_do_cmd_0("rrr", (len_max - max), s);
-	if (s->len_a == s->ind_a)
+	if (s->len_a == s->ind_a && s->ind_b == 0)
 	{
 		ft_do_cmd_0("pa", 1, s);
 		ft_do_cmd_0("ra", 1, s);
 	}
 	else
 	{
-		ft_do_cmd_0("rrb", ((len_min - min) - (len_max - max)), s);
+		ft_do_cmd_0(cmd, ((len_min - min) - (len_max - max)), s);
 		ft_do_cmd_0("pa", 1, s);
 		ft_do_cmd_0("ra", (s->len_a - s->ind_a + 1), s);
 	}
@@ -480,7 +487,7 @@ void 		ft_do_route3(t_stacks *s)
 {
 //	int 	way;
 	ft_do_cmd_0("ra", s->ind_a, s);
-	ft_do_cmd_0("rrb", s->ind_a, s);
+	ft_do_cmd_0("rrb", (s->len_b - s->ind_b), s);
 	ft_do_cmd_0("pa", 1, s);
 	ft_do_cmd_0("rra", s->ind_a, s);
 //	way = a_ind + (s->len_b - s->tmp_b->i) + 1 + a_ind;
@@ -565,7 +572,6 @@ void		ft_start_pushing(t_stacks *s)
 			ft_sort_3(s);
 		ft_print_stack3(s);
 	}
-	//цикл пока А не отсортирован:
 	while (ft_get_slen(s->b) > 0)
 		ft_start_swaping(s);
 }
@@ -577,6 +583,7 @@ int			main(int argc, char **argv)
 	s = ft_create_stack(argc, argv);
 	s->flag_print = 1;
 	ft_start_pushing(s);
+	printf("CMD_COUNTS: %d\n", s->cmd_counter);
 	return (1);
 }
 
