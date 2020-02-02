@@ -434,7 +434,7 @@ void		ft_do_route1(t_stacks *s)
 	else
 	{
 		ft_do_cmd_0("rr", min, s);
-		ft_do_cmd_0("rb", (max - min), s);
+		ft_do_cmd_0("ra", (max - min), s);
 		ft_do_cmd_0("pa", 1, s);
 		ft_do_cmd_0("rra", s->ind_a, s);
 	}
@@ -448,19 +448,19 @@ void		ft_do_route2(t_stacks *s)
 	int 	len_min;
 	int 	len_max;
 
-	if (s->len_b - s->tmp_b->i < s->len_a - s->ind_a)
-	{
-		min = s->tmp_b->i;
-		len_min = s->len_b;
-		max = s->ind_a;
-		len_max = s->len_a;
-	}
-	else
+	if (s->len_b - s->ind_b < s->len_a - s->ind_a)
 	{
 		min = s->ind_a;
 		len_min = s->len_a;
-		max = s->tmp_b->i;
+		max = s->ind_b;
 		len_max = s->len_b;
+	}
+	else
+	{
+		min = s->ind_b;
+		len_min = s->len_b;
+		max = s->ind_a;
+		len_max = s->len_a;
 	}
 	ft_do_cmd_0("rrr", (len_max - max), s);
 	if (s->len_a == s->ind_a)
@@ -470,9 +470,9 @@ void		ft_do_route2(t_stacks *s)
 	}
 	else
 	{
-		ft_do_cmd_0("rra", ((len_min - min) - (len_max - max)), s);
+		ft_do_cmd_0("rrb", ((len_min - min) - (len_max - max)), s);
 		ft_do_cmd_0("pa", 1, s);
-		ft_do_cmd_0("ra", (len_min - min + 1), s);
+		ft_do_cmd_0("ra", (s->len_a - s->ind_a + 1), s);
 	}
 }
 
@@ -491,10 +491,10 @@ void 		ft_do_route3(t_stacks *s)
 void 		ft_do_route4(t_stacks *s)
 {
 //	int 	way;
-	ft_do_cmd_0("rra", s->ind_a, s);
-	ft_do_cmd_0("rb", s->ind_a, s);
+	ft_do_cmd_0("rra", (s->len_a - s->ind_a), s);
+	ft_do_cmd_0("rb", s->ind_b, s);
 	ft_do_cmd_0("pa", 1, s);
-	ft_do_cmd_0("ra", s->ind_a, s);
+	ft_do_cmd_0("ra", (s->len_a - s->ind_a + 1), s);
 //	way = a_ind + (s->len_b - s->tmp_b->i) + 1 + a_ind;
 //	a_ind == 0 ? way : way++;
 //	return (way);
@@ -566,7 +566,7 @@ void		ft_start_pushing(t_stacks *s)
 		ft_print_stack3(s);
 	}
 	//цикл пока А не отсортирован:
-	while (ft_is_sorted_1(s->a) == 0 && ft_get_slen(s->b) > 0)
+	while (ft_get_slen(s->b) > 0)
 		ft_start_swaping(s);
 }
 
