@@ -19,14 +19,21 @@ typedef struct		s_stacks
 	int 			ind_max_sort;
 	int 			flag_print;
 	int				cmd_counter;
-	t_stack			*max_sort;
+	t_stack			*tmp_b;
 	int				len_a;
 	int				len_b;
+	int 			ind_b;
+	int				ind_a;
+	int 			comb;
+	int 			tmp_ind_b;
+	int 			tmp_ind_a;
+	int 			tmp_comb;
+
 	int				opt_a;
 	int				opt_b;
 	int				opt_pl;
 	int				tmp_a;
-	int				tmp_b;
+//	int				tmp_b;
 	int				tmp_pl;
 	int				cmd_print;
 	int				flag_v;
