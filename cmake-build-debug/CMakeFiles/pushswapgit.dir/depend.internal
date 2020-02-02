@@ -266,6 +266,11 @@ CMakeFiles/pushswapgit.dir/src/checker.c.o
  ../libft/includes/get_next_line.h
  ../libft/includes/libft.h
  /Users/romangorn/Desktop/pushswapgit/src/checker.c
+CMakeFiles/pushswapgit.dir/src/etc.c.o
+ ../includes/push_swap.h
+ ../libft/includes/get_next_line.h
+ ../libft/includes/libft.h
+ /Users/romangorn/Desktop/pushswapgit/src/etc.c
 CMakeFiles/pushswapgit.dir/src/push_swap.c.o
  ../includes/push_swap.h
  ../libft/includes/get_next_line.h

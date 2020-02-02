@@ -40,7 +40,7 @@ typedef struct		s_stacks
 }					t_stacks;
 
 int			ft_is_not_dub(t_stack *s, int value);
-static void	ft_stack_free(t_stack **s);
+void		ft_stack_free(t_stack **s);
 int			ft_stacks_free(t_stacks **s);
 void		ft_put_error(t_stacks **s);
 t_stack		*ft_create_new_n(int val);
@@ -62,7 +62,35 @@ int 		ft_cmd_r(t_stack **s);
 t_stack 	*ft_pop_last(t_stack **s);
 int 		ft_cmd_rr(t_stack **s);
 int 		ft_do_cmd(char *cmd, t_stacks *s);
-void		ft_print_cmd(char	*cmd);
+void		ft_prnt_cmd(char	*cmd);
 void		ft_do_cmd_0(char *com, int rpt, t_stacks *s);
+
+void		ft_index(t_stack *s);
+int			ft_get_slen(t_stack *s);
+void		ft_print_stack3(t_stacks *s);
+int 		ft_find_i_max_sort(t_stack *s);
+void		ft_move_unsort(t_stacks *s);
+int 		ft_find_i_after_sort2(t_stack *s);
+void		ft_move_unsort_2(t_stacks *s);
+void		ft_sort_3(t_stacks *s);
+int			ft_is_sorted_1(t_stack *s);
+int 		ft_find_a_place(t_stacks *s);
+int 		ft_find_comb(t_stacks *s, int a_ind);
+int 		ft_find_route1(t_stacks *s, int a_ind);
+int 		ft_find_route2(t_stacks *s, int a_ind);
+int 		ft_find_route3(t_stacks *s, int a_ind);
+int 		ft_find_route4(t_stacks *s, int a_ind);
+int 		ft_find_route(t_stacks *s, int comb, int a_ind);
+int 		ft_swap(t_stacks *s);
+void		ft_do_route1(t_stacks *s);
+void		ft_do_route2(t_stacks *s);
+void 		ft_do_route3(t_stacks *s);
+void 		ft_do_route4(t_stacks *s);
+void 		ft_move_to_a(t_stacks *s);
+void 		ft_start_swaping(t_stacks *s);
+int			ft_find_turn(t_stacks *s);
+void		ft_start_pushing(t_stacks *s);
+
+
 
 #endif //PUSH_SWAP_PUSH_SWAP_H

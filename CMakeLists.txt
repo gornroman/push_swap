@@ -82,4 +82,4 @@ add_executable(pushswapgit
         author
         checker
         Makefile
-        todo.txt)
+        todo.txt src/etc.c)

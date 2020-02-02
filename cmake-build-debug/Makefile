@@ -1905,6 +1905,33 @@ src/checker.c.s:
 	$(MAKE) -f CMakeFiles/pushswapgit.dir/build.make CMakeFiles/pushswapgit.dir/src/checker.c.s
 .PHONY : src/checker.c.s
 
+src/etc.o: src/etc.c.o
+
+.PHONY : src/etc.o
+
+# target to build an object file
+src/etc.c.o:
+	$(MAKE) -f CMakeFiles/pushswapgit.dir/build.make CMakeFiles/pushswapgit.dir/src/etc.c.o
+.PHONY : src/etc.c.o
+
+src/etc.i: src/etc.c.i
+
+.PHONY : src/etc.i
+
+# target to preprocess a source file
+src/etc.c.i:
+	$(MAKE) -f CMakeFiles/pushswapgit.dir/build.make CMakeFiles/pushswapgit.dir/src/etc.c.i
+.PHONY : src/etc.c.i
+
+src/etc.s: src/etc.c.s
+
+.PHONY : src/etc.s
+
+# target to generate assembly for a file
+src/etc.c.s:
+	$(MAKE) -f CMakeFiles/pushswapgit.dir/build.make CMakeFiles/pushswapgit.dir/src/etc.c.s
+.PHONY : src/etc.c.s
+
 src/push_swap.o: src/push_swap.c.o
 
 .PHONY : src/push_swap.o
@@ -2139,6 +2166,9 @@ help:
 	@echo "... src/checker.o"
 	@echo "... src/checker.i"
 	@echo "... src/checker.s"
+	@echo "... src/etc.o"
+	@echo "... src/etc.i"
+	@echo "... src/etc.s"
 	@echo "... src/push_swap.o"
 	@echo "... src/push_swap.i"
 	@echo "... src/push_swap.s"

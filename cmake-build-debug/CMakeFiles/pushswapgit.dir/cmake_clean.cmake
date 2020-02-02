@@ -65,6 +65,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/pushswapgit.dir/libft/src/ft_toupper.c.o"
   "CMakeFiles/pushswapgit.dir/libft/src/get_next_line.c.o"
   "CMakeFiles/pushswapgit.dir/src/checker.c.o"
+  "CMakeFiles/pushswapgit.dir/src/etc.c.o"
   "CMakeFiles/pushswapgit.dir/src/push_swap.c.o"
   "pushswapgit"
   "pushswapgit.pdb"

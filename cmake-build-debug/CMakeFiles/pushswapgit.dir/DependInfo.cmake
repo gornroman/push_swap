@@ -70,6 +70,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/romangorn/Desktop/pushswapgit/libft/src/ft_toupper.c" "/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/CMakeFiles/pushswapgit.dir/libft/src/ft_toupper.c.o"
   "/Users/romangorn/Desktop/pushswapgit/libft/src/get_next_line.c" "/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/CMakeFiles/pushswapgit.dir/libft/src/get_next_line.c.o"
   "/Users/romangorn/Desktop/pushswapgit/src/checker.c" "/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/CMakeFiles/pushswapgit.dir/src/checker.c.o"
+  "/Users/romangorn/Desktop/pushswapgit/src/etc.c" "/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/CMakeFiles/pushswapgit.dir/src/etc.c.o"
   "/Users/romangorn/Desktop/pushswapgit/src/push_swap.c" "/Users/romangorn/Desktop/pushswapgit/cmake-build-debug/CMakeFiles/pushswapgit.dir/src/push_swap.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")

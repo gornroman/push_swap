@@ -306,6 +306,9 @@
 		<Unit filename="/Users/romangorn/Desktop/pushswapgit/src/checker.c">
 			<Option target="pushswapgit"/>
 		</Unit>
+		<Unit filename="/Users/romangorn/Desktop/pushswapgit/src/etc.c">
+			<Option target="pushswapgit"/>
+		</Unit>
 		<Unit filename="/Users/romangorn/Desktop/pushswapgit/src/push_swap.c">
 			<Option target="pushswapgit"/>
 		</Unit>

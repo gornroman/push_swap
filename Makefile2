@@ -21,19 +21,19 @@ INC_LIB_FT 		= ./libft/includes/
 SRC_DIR 		= ./src/
 OBJ_DIR 		= ./obj/
 
-SRC_NAME_CHECK	= etc.c checker.c
-SRC_NAME_PS     = etc.c push_swap.c
+SRC_NAME_CHECK	= checker.c src.c
+SRC_NAME_PS     = push_swap.c src.c
 
-HEADER                  = $(addprefix $(INC_DIR), $(HEADER_NAME))
+HEADER 			= $(addprefix $(INC_DIR), $(HEADER_NAME))
 
 SRC_PS                  = $(addprefix $(SRC_PATH), $(SRC_NAME_PS))
-SRC_CHECK               = $(addprefix $(SRC_PATH), $(SRC_NAME_CHECK))
+SRC_CHECK		= $(addprefix $(SRC_PATH), $(SRC_NAME_CHECK))
 OBJ_PS                  = $(addprefix $(OBJ_DIR), $(SRC_NAME_PS:.c=.o))
-OBJ_CHECK               = $(addprefix $(OBJ_DIR), $(SRC_NAME_CHECK:.c=.o))
+OBJ_CHECK		= $(addprefix $(OBJ_DIR), $(SRC_NAME_CHECK:.c=.o))
 
-CC                              = gcc
-FLAGS                   = -Wall -Wextra -Werror
-GCC_LIBFT               = -L ./libft -l ft
+CC				= gcc
+FLAGS			= -Wall -Wextra -Werror
+GCC_LIBFT 		= -L ./libft -l ft
 
 all: $(NAME_PS) $(NAME_CHECK)
 

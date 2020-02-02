@@ -12,19 +12,6 @@
 
 #include "push_swap.h"
 
-void		ft_print_stack(t_stack **s)
-{
-	t_stack		*temp;
-
-	temp = *s;
-	while (temp != NULL)
-	{
-		printf("%d ", (temp)->val);
-		(temp) = (temp)->next;
-	}
-	printf("\n");
-}
-
 void		ft_index(t_stack *s)
 {
 	int i;
@@ -36,27 +23,6 @@ void		ft_index(t_stack *s)
 		s = s->next;
 		i++;
 	}
-}
-void		ft_print_stack2(t_stacks *s)
-{
-	t_stack		*a;
-	t_stack		*b;
-
-	a = s->a;
-	b = s->b;
-	while (a != NULL || b != NULL)
-	{
-		printf("%d   ", a->val);
-		if (!b)
-			printf("x\n");
-		if (b)
-		{
-			printf("%d\n", b->val);
-			b = b->next;
-		}
-		a = a->next;
-	}
-	printf("\n");
 }
 
 int				ft_get_slen(t_stack *s)
@@ -132,12 +98,6 @@ int 		ft_find_i_max_sort(t_stack *s)
 	return (ind);
 }
 
-void		ft_print_cmd(char	*cmd)
-{
-	ft_putstr(cmd);
-	ft_putchar('\n');
-}
-
 void		ft_move_unsort(t_stacks *s)
 {
 	int 	i_max_sort;
@@ -186,29 +146,6 @@ int 		ft_find_i_after_sort2(t_stack *s)
 	return (ind + 1);
 }
 
-int 		ft_find_i_after_sort(t_stack *s)
-{
-	int 	i;
-	int 	prev;
-	int 	i_after_sort;
-
-	prev = s->val;
-	i_after_sort = 0;
-	i = 0;
-	s = s->next;
-	while (s)
-	{
-		if (s->val > prev)
-			i_after_sort = i;
-		else
-			i_after_sort = 0;
-		prev = s->val;
-		s = s->next;
-		i++;
-	}
-	return (i_after_sort + 1);
-}
-
 void		ft_move_unsort_2(t_stacks *s)
 {
 	int		i;
@@ -218,8 +155,12 @@ void		ft_move_unsort_2(t_stacks *s)
 	else
 		i = ft_get_slen(s->a) - ft_find_i_after_sort2(s->a);
 //	ft_do_cmd_0("rra", i, s);
+
+	if (ft_find_i_after_sort2(s->a) >= 3)
+	{
 	ft_do_cmd_0("ra", ft_get_slen(s->a) - i, s);
 	ft_do_cmd_0("pb", i, s);
+	}
 }
 
 void		ft_sort_3(t_stacks *s)
@@ -304,6 +245,7 @@ int 		ft_find_comb(t_stacks *s, int a_ind)
 		return (3);
 	if (s->tmp_b->i < s->len_b / 2 && a_ind >= s->len_a / 2)
 		return (4);
+	return (0);
 }
 int 		ft_find_route1(t_stacks *s, int a_ind)
 {
@@ -404,9 +346,9 @@ int 		ft_swap(t_stacks *s)
 	s->tmp_comb = comb;
 	s->tmp_ind_a = a_ind;
 	s->tmp_ind_b = s->tmp_b->i;
-	printf("s->b val: %d, ", s->tmp_b->val);
-	printf("a_len: %d, a_ind: %d, b_len: %d, b_ind: %d, comb: %d, ", s->len_a, a_ind, s->len_b, s->tmp_b->i, comb);
-	printf("min_route: %d\n", min_route);
+//	printf("s->b val: %d, ", s->tmp_b->val);
+//	printf("a_len: %d, a_ind: %d, b_len: %d, b_ind: %d, comb: %d, ", s->len_a, a_ind, s->len_b, s->tmp_b->i, comb);
+//	printf("min_route: %d\n", min_route);
 
 	return (min_route);
 }
@@ -546,10 +488,10 @@ void 		ft_start_swaping(t_stacks *s)
 		}
 		s->tmp_b = s->tmp_b->next;
 	}
-	printf("ind_b: %d, ind_a: %d, comb: %d\n", s->ind_b, s->ind_a, s->comb);
-	ft_print_stack3(s);
+//	printf("ind_b: %d, ind_a: %d, comb: %d\n", s->ind_b, s->ind_a, s->comb);
+//	ft_print_stack3(s);
 	ft_move_to_a(s);
-	ft_print_stack3(s);
+//	ft_print_stack3(s);
 	//переводим из стака б в а min_i
 }
 
@@ -580,15 +522,15 @@ void		ft_start_pushing(t_stacks *s)
 //		printf("5elemetns algo\n");
 	else if (ft_is_sorted_1(s->a) == 0)
 	{
-		ft_print_stack3(s);
+//		ft_print_stack3(s);
 		ft_move_unsort(s);
-		ft_print_stack3(s);
+//		ft_print_stack3(s);
 		ft_index(s->a);
 		ft_move_unsort_2(s);
-		ft_print_stack3(s);
+//		ft_print_stack3(s);
 		if (ft_is_sorted_1(s->a) == 0)
 			ft_sort_3(s);
-		ft_print_stack3(s);
+//		ft_print_stack3(s);
 	}
 	while (ft_get_slen(s->b) > 0)
 		ft_start_swaping(s);
@@ -599,7 +541,7 @@ void		ft_start_pushing(t_stacks *s)
 		else
 			ft_do_cmd_0("ra", 1, s);
 	}
-	ft_print_stack3(s);
+//	ft_print_stack3(s);
 }
 
 int			main(int argc, char **argv)
@@ -609,7 +551,7 @@ int			main(int argc, char **argv)
 	s = ft_create_stack(argc, argv);
 	s->flag_print = 1;
 	ft_start_pushing(s);
-	printf("CMD_COUNTS: %d\n", s->cmd_counter);
+//	printf("CMD_COUNTS: %d\n", s->cmd_counter);
 	return (1);
 }
 
