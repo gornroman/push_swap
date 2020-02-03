@@ -68,9 +68,15 @@ void		ft_move_unsort(t_stacks *s)
 		i_max_sort = ft_get_slen(s->a) - 3;
 //	printf("index: %d\n", i_max_sort);
 //	while (i_max_sort--)
+//	if (i_max_sort == 0 && ft_get_slen(s->a) > 3)
+//		i_max_sort = ft_get_slen(s->a) - 3;
 	if (i_max_sort == 0 && ft_get_slen(s->a) > 3)
-		i_max_sort = ft_get_slen(s->a) - 3;
+	{
+		s->sort_from_start = 1;
+		return ;
+	}
 	ft_do_cmd_0("pb", i_max_sort, s);
+	s->sort_from_start = 1;
 }
 
 int 		ft_find_i_after_sort2(t_stack *s)
@@ -126,6 +132,87 @@ void		ft_move_unsort_2(t_stacks *s)
 		ft_do_cmd_0("ra", 2, s);
 		ft_do_cmd_0("pb", i, s);
 	}
+}
+
+int		ft_check_sort(t_stack *s)
+{
+	t_stack *tmp;
+	int		flag;
+	int		prev;
+	int		first;
+
+	flag = 0;
+	tmp = s;
+	first = tmp->val;
+	prev = tmp->val;
+	tmp = tmp->next;
+	while (tmp)
+	{
+		if (prev > tmp->val)
+			flag++;
+		prev = tmp->val;
+		if (!tmp->next)
+			tmp->val > first ? flag++ : flag;
+		tmp = tmp->next;
+	}
+	return (flag < 2 ? 1 : 0);
+}
+int			ft_check_unsort(t_stacks *s)
+{
+	int		prev;
+	t_stack	*tmp;
+
+	tmp = s->a;
+	prev = tmp->val;
+	tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->val > prev)
+			return (0);
+		prev = tmp->val;
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+void		ft_move_unsort_3(t_stacks *s)
+{
+	int		i;
+
+	if (ft_is_sorted_1(s->a))
+		return ;
+	if (ft_find_i_after_sort2(s->a) < 3)
+		i = ft_get_slen(s->a) - 3;
+	else
+		i = ft_get_slen(s->a) - ft_find_i_after_sort2(s->a);
+//	ft_do_cmd_0("rra", i, s);
+
+	if (ft_find_i_after_sort2(s->a) >= 3)
+	{
+		ft_do_cmd_0("ra", ft_get_slen(s->a) - i, s);
+		while (i)
+		{
+			ft_do_cmd_0("pb", 1, s);
+			if (ft_check_sort(s->a) == 1)
+				return ;
+			i--;
+		}
+	}
+	else
+	{
+		if (ft_check_unsort(s) == 0)
+			ft_do_cmd_0("ra", i, s);
+		ft_do_cmd_0("pb", i, s);
+	}
+}
+
+void	ft_sort_3_2(t_stacks *s)
+{
+	if (s->a->val > s->a->next->val &&
+		s->a->val < s->a->next->next->val)
+		ft_do_cmd_0("sa", 1, s);
+	else if (s->a->val > s->a->next->next->val)
+		ft_do_cmd_0("ra", 1, s);
 }
 
 void		ft_sort_3(t_stacks *s)
@@ -201,6 +288,19 @@ int 		ft_find_a_place(t_stacks *s)
 }
 
 int 		ft_find_comb(t_stacks *s, int a_ind)
+{
+	if (s->tmp_b->i <= s->len_b / 2 && a_ind <= s->len_a / 2)
+		return (1);
+	if (s->tmp_b->i > s->len_b / 2 && a_ind > s->len_a / 2)
+		return (2);
+	if (s->tmp_b->i > s->len_b / 2 && a_ind <= s->len_a / 2)
+		return (3);
+	if (s->tmp_b->i <= s->len_b / 2 && a_ind > s->len_a / 2)
+		return (4);
+	return (0);
+}
+
+int 		ft_find_comb_bigger5(t_stacks *s, int a_ind)
 {
 	if (s->tmp_b->i < s->len_b / 2 && a_ind < s->len_a / 2)
 		return (1);
@@ -306,7 +406,10 @@ int 		ft_swap(t_stacks *s)
 	int		comb;
 
 	a_ind = ft_find_a_place(s); //узнать индекс элемента Б в стаке А
-	comb = ft_find_comb(s, a_ind); //узнать расположение А и Б (1/2/3/4)
+	if (s->firstlen > 5)
+		comb = ft_find_comb_bigger5(s, a_ind);
+	else
+		comb = ft_find_comb(s, a_ind);//узнать расположение А и Б (1/2/3/4)
 	min_route = ft_find_route(s, comb, a_ind);//считать маршрут (1/2/3/4)
 	s->tmp_comb = comb;
 	s->tmp_ind_a = a_ind;
@@ -495,10 +598,12 @@ void		ft_check_last(t_stacks *s)
 {
 	int 	last_elem;
 
+	if (ft_check_sort(s->a) == 0)
+		return ;
 	last_elem = ft_last_elem(s->a);
 	while (s->a->val > last_elem)
 	{
-		ft_do_cmd_0("ra", 1, s);
+		ft_do_cmd_0("rra", 1, s);
 //		s->a = s->a->next;
 		last_elem = ft_last_elem(s->a);
 	}
@@ -519,7 +624,7 @@ void		ft_start_pushing(t_stacks *s)
 //		ft_print_stack4(s);
 		ft_check_last(s);
 		ft_index(s->a);
-		ft_move_unsort(s);
+		s->sort_from_start == 1 ? ft_move_unsort_3(s) : ft_move_unsort(s);
 //		ft_print_stack4(s);
 		if (ft_is_sorted_1(s->a) == 0 && ft_get_slen(s->a) == 3)
 			ft_sort_3(s);

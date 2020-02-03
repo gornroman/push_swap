@@ -463,6 +463,7 @@ t_stacks	*ft_create_stack(int argc, char **argv)
 	s->visualisation = 0;
 	s->cmd_counter = 0;
 	s->flag_print = 0;
+	s->sort_from_start = 0;
 //	if (argc == 2)
 //		ft_create_stack_a_argc2(argv, s);
 //	else
@@ -474,6 +475,7 @@ t_stacks	*ft_create_stack(int argc, char **argv)
 		ft_putstr("START\n");
 		ft_print_v(s);
 	}
+	s->firstlen = ft_get_slen(s->a);
 //	printf("max_int_len: %d\n", s->max_int_len);
 	return (s);
 }

@@ -30,6 +30,8 @@ typedef struct		s_stacks
 	int 			tmp_comb;
 	int				visualisation;
 	int				max_int_len;
+	int				sort_from_start;
+	int				firstlen;
 }					t_stacks;
 
 int			ft_is_not_dub(t_stack *s, int value);
