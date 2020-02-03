@@ -641,6 +641,69 @@ void		ft_check_last(t_stacks *s)
 	}
 }
 
+int			ft_find_sorts(t_stack *s, int max)
+{
+	int		prev;
+	int 	sortlen;
+	t_stack	*tmp;
+	int		res;
+
+	res = 0;
+	tmp = s;
+	prev = tmp->val;
+	tmp = tmp->next;
+	sortlen = 1;
+	while (tmp)
+	{
+		if (tmp->val > prev)
+		{
+			sortlen++;
+			if (sortlen == max)
+				res++;
+		}
+		else
+			sortlen = 1;
+		prev = tmp->val;
+		tmp = tmp->next;
+	}
+	return (res);
+}
+
+int 		ft_count_sorts(t_stack *s)
+{
+	int 	max;
+	int 	prev;
+	int 	new_max;
+	t_stack	*tmp;
+
+	tmp = s;
+	prev = tmp->val;
+	new_max = 1;
+	max = 1;
+	tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->val > prev)
+		{
+			new_max++;
+			if (new_max > max)
+				max = new_max;
+		}
+		else
+			new_max = 1;
+		prev = tmp->val;
+		tmp = tmp->next;
+	}
+	return (ft_find_sorts(s, max));
+}
+void		ft_first_sort(t_stacks *s)
+{
+	if (ft_count_sorts(s->a) == 1)
+	{
+		printf("");
+	}
+}
+
 void		ft_start_pushing(t_stacks *s)
 {
 	if (ft_get_slen(s->a) == 2 && ft_is_sorted_1(s->a) == 0)
@@ -651,13 +714,12 @@ void		ft_start_pushing(t_stacks *s)
 //		printf("5elemetns algo\n");
 	else if (ft_is_sorted_1(s->a) == 0)
 	{
-//		ft_print_stack4(s);
+//		ft_first_sort(s);
+		// прошлый вариант:
 		ft_move_unsort(s);
-//		ft_print_stack4(s);
 		ft_check_last(s);
 		ft_index(s->a);
 		s->sort_from_start == 1 ? ft_move_unsort_3(s) : ft_move_unsort(s);
-//		ft_print_stack4(s);
 		if (ft_is_sorted_1(s->a) == 0 && ft_get_slen(s->a) == 3)
 			ft_sort_3(s);
 //		ft_print_stack4(s);
