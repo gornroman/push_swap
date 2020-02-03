@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   etc.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgroleo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,6 +11,246 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int				ft_get_slen(t_stack *s)
+{
+	int count;
+
+	count = 0;
+	while (s)
+	{
+		s = s->next;
+		count++;
+	}
+	return (count);
+}
+
+void		ft_print_stack3(t_stacks *s)
+{
+	t_stack		*a;
+	t_stack		*b;
+	int 		len;
+	int			temp;
+
+	len = ft_get_slen(s->a) > ft_get_slen(s->b) ? ft_get_slen(s->a) : ft_get_slen(s->b);
+	a = s->a;
+	b = s->b;
+	while (len--)
+	{
+		if (!a)
+			printf("    ");
+		else
+		{
+			temp = a->val;
+			while (temp)
+			{
+				write(1, "-", 1);
+				temp--;
+			}
+//			printf("%d   ", a->val);
+			a = a->next;
+		}
+		write(1, " ", 1);
+		if (!b)
+			printf("\n");
+		else
+		{
+			temp = b->val;
+			while (temp)
+			{
+				write(1, "-", 1);
+				temp--;
+			}
+//			printf("%d\n", b->val);
+			b = b->next;
+			write(1, "\n", 1);
+		}
+	}
+	printf("\n");
+}
+
+int 		ft_compare_min_max(int min, int max)
+{
+	int		minlen;
+	int		maxlen;
+
+	minlen = 0;
+	maxlen = 0;
+	while (max)
+	{
+		maxlen++;
+		max /= 10;
+	}
+	if (min < 0)
+	{
+		min *= -1;
+		minlen++;
+	}
+	while (min)
+	{
+		minlen++;
+		min /= 10;
+	}
+	return (minlen > maxlen ? minlen : maxlen);
+}
+
+int			ft_find_max_len(t_stacks *s)
+{
+	int 	max;
+	int 	min;
+	t_stack	*temp;
+
+	temp = s->a;
+	max = 0;
+	min = 0;
+	while(temp)
+	{
+		if (temp->val > max)
+			max = temp->val;
+		if (temp->val < min)
+			min = temp->val;
+		temp = temp->next;
+	}
+	return(ft_compare_min_max(min, max) < 5 ? 5 : ft_compare_min_max(min, max));
+}
+
+void 		ft_print_header(t_stacks *s)
+{
+	int 	tmp;
+
+	tmp = 5;
+	if (s)
+		ft_putstr("*");
+	while ((tmp--))
+		ft_putstr("-");
+	ft_putstr("A");
+	tmp = 5;
+	while ((tmp--))
+		ft_putstr("-");
+	ft_putstr("*");
+	tmp = 5;
+	while ((tmp--))
+		ft_putstr("-");
+	ft_putstr("B");
+	tmp = 5;
+	while ((tmp--))
+		ft_putstr("-");
+	ft_putstr("*\n");
+}
+
+int			ft_get_len_of_int(int nbr)
+{
+	int len;
+
+	if (nbr == 0)
+		return (1);
+	len = 0;
+	while (nbr)
+	{
+		len++;
+		nbr /= 10;
+	}
+	return (len);
+}
+
+void 		ft_print_stack(t_stack *a)
+{
+	int		tmp;
+
+//	tmp = ft_get_slen(a) - ft_get_len_of_int(a->val);
+	if (a == NULL)
+	{
+		tmp = 11;
+		while (tmp--)
+			ft_putstr(" ");
+	}
+	else
+	{
+		tmp = 11 - ft_get_len_of_int(a->val);
+		a->val < 0 ? tmp-- : tmp;
+		while (tmp > 0)
+		{
+			ft_putstr(" ");
+			tmp --;
+		}
+		ft_putnbr(a->val);
+	}
+}
+
+void 		ft_print_bot(t_stacks *s)
+{
+	int 	tmp;
+
+	tmp = 11;
+	if (s)
+		ft_putstr("*");
+	while ((tmp--))
+		ft_putstr("-");
+	ft_putstr("*");
+	tmp = 11;
+	while ((tmp--))
+		ft_putstr("-");
+	ft_putstr("*\n");
+}
+
+void		ft_print_v(t_stacks *s)
+{
+	int 	i;
+	t_stack	*temp_a;
+	t_stack	*temp_b;
+
+	temp_a = s->a;
+	temp_b = s->b;
+	i = 0;
+	ft_print_header(s);
+	while (i < ft_get_slen(s->a) || i < ft_get_slen(s->b))
+	{
+		ft_putstr("|");
+		ft_print_stack(temp_a);
+		ft_putstr("|");
+		ft_print_stack(temp_b);
+		ft_putstr("|\n");
+		i++;
+		if (temp_a && temp_a->next)
+			temp_a = temp_a->next;
+		else
+			temp_a = NULL;
+		if (temp_b && temp_b->next)
+			temp_b = temp_b->next;
+		else
+			temp_b = NULL;
+	}
+	ft_print_bot(s);
+}
+
+void		ft_print_stack4(t_stacks *s)
+{
+	t_stack		*a;
+	t_stack		*b;
+	int 		len;
+
+	len = ft_get_slen(s->a) > ft_get_slen(s->b) ? ft_get_slen(s->a) : ft_get_slen(s->b);
+	a = s->a;
+	b = s->b;
+	while (len--)
+	{
+		if (!a)
+			printf("    ");
+		else
+		{
+			printf("%d   ", a->val);
+			a = a->next;
+		}
+		if (!b)
+			printf("x\n");
+		else
+		{
+			printf("%d\n", b->val);
+			b = b->next;
+		}
+	}
+	printf("\n");
+}
 
 void		ft_prnt_cmd(char	*cmd)
 {
@@ -133,7 +373,7 @@ void		ft_create_stack_a(int argc, char **argv, t_stacks *s)
 	while (i < argc)
 	{
 		if (ft_strcmp(argv[i], "-v") == 0)
-			s->flag_v = 1;
+			s->visualisation = 1;
 		else
 		{
 			cur_value = ft_atoi(argv[i]);
@@ -162,7 +402,7 @@ void		ft_create_stack_a_argc2(char **argv, t_stacks *s)
 	while ((int)argv[i])
 	{
 		if (ft_strcmp(argv[i], "-v") == 0)
-			s->flag_v = 1;
+			s->visualisation = 1;
 		else
 		{
 			cur_value = ft_atoi(argv[i]);
@@ -178,6 +418,39 @@ void		ft_create_stack_a_argc2(char **argv, t_stacks *s)
 	ft_free_array(argv);
 }
 
+void		ft_create_stack_a3(int argc, char **argv, t_stacks *s)
+{
+	int 	i;
+	int 	cur_value;
+	char 	**temp;
+	int 	j;
+
+	i = 1;
+	while (i < argc)
+	{
+		temp = ft_strsplit(argv[i], ' ');
+		j = 0;
+		while ((int)temp[j])
+		{
+			if (ft_strcmp(temp[j], "-v") == 0)
+				s->visualisation = 1;
+			else
+			{
+				cur_value = ft_atoi(temp[j]);
+				if (ft_is_not_dub(s->a, cur_value) == 0)
+					ft_put_error(&s);
+				if (ft_stack_push_back(&s->a, cur_value) == NULL)
+					ft_put_error(&s);
+				if (ft_check_int(cur_value, temp[j]) == 0)
+					ft_put_error(&s);
+			}
+			j++;
+		}
+		i++;
+		ft_free_array(temp);
+	}
+}
+
 t_stacks	*ft_create_stack(int argc, char **argv)
 {
 	t_stacks	*s;
@@ -187,13 +460,21 @@ t_stacks	*ft_create_stack(int argc, char **argv)
 		return (NULL);
 	s->a = NULL;
 	s->b = NULL;
-//	s->flag_v = 0;
+	s->visualisation = 0;
 	s->cmd_counter = 0;
 	s->flag_print = 0;
-	if (argc == 2)
-		ft_create_stack_a_argc2(argv, s);
-	else
-		ft_create_stack_a(argc, argv, s);
+//	if (argc == 2)
+//		ft_create_stack_a_argc2(argv, s);
+//	else
+//		ft_create_stack_a3(argc, argv, s);
+	ft_create_stack_a3(argc, argv, s);
+	s->max_int_len = ft_find_max_len(s);
+	if (s->visualisation == 1)
+	{
+		ft_putstr("START\n");
+		ft_print_v(s);
+	}
+//	printf("max_int_len: %d\n", s->max_int_len);
 	return (s);
 }
 
@@ -353,6 +634,11 @@ int 		ft_do_cmd(char *cmd, t_stacks *s)
 	return (res == 0 ? 0 : 1);
 }
 
+//void		ft_visualisation(t_stacks *s)
+//{
+//
+//}
+
 void		ft_do_cmd_0(char *com, int rpt, t_stacks *s)
 {
 //	int	i;
@@ -362,10 +648,16 @@ void		ft_do_cmd_0(char *com, int rpt, t_stacks *s)
 	{
 		if (ft_do_cmd(com, s))
 		{
-			if (s->flag_print == 1)
+			if (s->visualisation == 1)
+			{
 				ft_prnt_cmd(com);
-//			if (s->cmd_print == 0 && s->flag_v == 1)
-//				ft_ps_print_stack(s);
+				ft_print_v(s);
+			}
+//				ft_print_stack3(s);
+			else if (s->flag_print == 1)
+				ft_prnt_cmd(com);
+//			if (s->flag_print == 0 && s->visualisation == 1)
+//				ft_visualisation(s);
 			s->cmd_counter++;
 		}
 		else

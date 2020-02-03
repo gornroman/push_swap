@@ -16,7 +16,7 @@ typedef struct		s_stacks
 {
 	t_stack			*a;
 	t_stack			*b;
-	int 			ind_max_sort;
+//	int 			ind_max_sort;
 	int 			flag_print;
 	int				cmd_counter;
 	t_stack			*tmp_b;
@@ -28,15 +28,8 @@ typedef struct		s_stacks
 	int 			tmp_ind_b;
 	int 			tmp_ind_a;
 	int 			tmp_comb;
-
-	int				opt_a;
-	int				opt_b;
-	int				opt_pl;
-	int				tmp_a;
-//	int				tmp_b;
-	int				tmp_pl;
-	int				cmd_print;
-	int				flag_v;
+	int				visualisation;
+	int				max_int_len;
 }					t_stacks;
 
 int			ft_is_not_dub(t_stack *s, int value);
@@ -48,8 +41,7 @@ t_stack 	*ft_last_node(t_stack *s);
 t_stack		*ft_stack_push_back(t_stack **stack, int val);
 void		ft_free_array(char **array);
 int			ft_check_int(int val_i, char *val_c);
-void		ft_create_stack_a(int argc, char **argv, t_stacks *s);
-void		ft_create_stack_a_argc2(char **argv, t_stacks *s);
+void		ft_create_stack_a3(int argc, char **argv, t_stacks *s);
 t_stacks	*ft_create_stack(int argc, char **argv);
 int			ft_is_sorted(t_stacks *s);
 int 		ft_cmd_s(t_stack **s);
@@ -64,10 +56,12 @@ int 		ft_cmd_rr(t_stack **s);
 int 		ft_do_cmd(char *cmd, t_stacks *s);
 void		ft_prnt_cmd(char	*cmd);
 void		ft_do_cmd_0(char *com, int rpt, t_stacks *s);
+void		ft_visualisation(t_stacks *s);
 
 void		ft_index(t_stack *s);
 int			ft_get_slen(t_stack *s);
 void		ft_print_stack3(t_stacks *s);
+void		ft_print_stack4(t_stacks *s);
 int 		ft_find_i_max_sort(t_stack *s);
 void		ft_move_unsort(t_stacks *s);
 int 		ft_find_i_after_sort2(t_stack *s);
@@ -90,7 +84,6 @@ void 		ft_move_to_a(t_stacks *s);
 void 		ft_start_swaping(t_stacks *s);
 int			ft_find_turn(t_stacks *s);
 void		ft_start_pushing(t_stacks *s);
-
 
 
 #endif //PUSH_SWAP_PUSH_SWAP_H

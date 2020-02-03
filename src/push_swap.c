@@ -25,48 +25,6 @@ void		ft_index(t_stack *s)
 	}
 }
 
-int				ft_get_slen(t_stack *s)
-{
-	int count;
-
-	count = 0;
-	while (s)
-	{
-		s = s->next;
-		count++;
-	}
-	return (count);
-}
-
-void		ft_print_stack3(t_stacks *s)
-{
-	t_stack		*a;
-	t_stack		*b;
-	int 		len;
-
-	len = ft_get_slen(s->a) > ft_get_slen(s->b) ? ft_get_slen(s->a) : ft_get_slen(s->b);
-	a = s->a;
-	b = s->b;
-	while (len--)
-	{
-		if (!a)
-			printf("    ");
-		else
-		{
-			printf("%d   ", a->val);
-			a = a->next;
-		}
-		if (!b)
-			printf("x\n");
-		else
-		{
-			printf("%d\n", b->val);
-			b = b->next;
-		}
-	}
-	printf("\n");
-}
-
 int 		ft_find_i_max_sort(t_stack *s)
 {
 	int 	max;
@@ -150,6 +108,8 @@ void		ft_move_unsort_2(t_stacks *s)
 {
 	int		i;
 
+	if (ft_is_sorted_1(s->a))
+		return ;
 	if (ft_find_i_after_sort2(s->a) < 3)
 		i = ft_get_slen(s->a) - 3;
 	else
@@ -158,8 +118,13 @@ void		ft_move_unsort_2(t_stacks *s)
 
 	if (ft_find_i_after_sort2(s->a) >= 3)
 	{
-	ft_do_cmd_0("ra", ft_get_slen(s->a) - i, s);
-	ft_do_cmd_0("pb", i, s);
+		ft_do_cmd_0("ra", ft_get_slen(s->a) - i, s);
+		ft_do_cmd_0("pb", i, s);
+	}
+	else
+	{
+		ft_do_cmd_0("ra", 2, s);
+		ft_do_cmd_0("pb", i, s);
 	}
 }
 
@@ -414,6 +379,12 @@ void		ft_do_route2(t_stacks *s)
 		len_max = s->len_a;
 		cmd = "rrb";
 	}
+//	if (s->len_b == 1)
+//	{
+//		ft_do_cmd_0("ra", (s->len_a - (len_min - min)), s);
+//		ft_do_cmd_0("pa", 1, s);
+//		return ;
+//	}
 	ft_do_cmd_0("rrr", (len_max - max), s);
 	if (s->len_a == s->ind_a && s->ind_b == 0)
 	{
@@ -507,9 +478,30 @@ int			ft_find_turn(t_stacks *s)
 	{
 		if (prev > temp->val)
 			return (temp->i);
+		prev = temp->val;
 		temp = temp->next;
 	}
 	return (0);
+}
+
+int 		ft_last_elem(t_stack *a)
+{
+	while(a && a->next)
+		a = a->next;
+	return (a->val);
+}
+
+void		ft_check_last(t_stacks *s)
+{
+	int 	last_elem;
+
+	last_elem = ft_last_elem(s->a);
+	while (s->a->val > last_elem)
+	{
+		ft_do_cmd_0("ra", 1, s);
+//		s->a = s->a->next;
+		last_elem = ft_last_elem(s->a);
+	}
 }
 
 void		ft_start_pushing(t_stacks *s)
@@ -522,18 +514,20 @@ void		ft_start_pushing(t_stacks *s)
 //		printf("5elemetns algo\n");
 	else if (ft_is_sorted_1(s->a) == 0)
 	{
-//		ft_print_stack3(s);
+//		ft_print_stack4(s);
 		ft_move_unsort(s);
-//		ft_print_stack3(s);
+//		ft_print_stack4(s);
+		ft_check_last(s);
 		ft_index(s->a);
-		ft_move_unsort_2(s);
-//		ft_print_stack3(s);
-		if (ft_is_sorted_1(s->a) == 0)
+		ft_move_unsort(s);
+//		ft_print_stack4(s);
+		if (ft_is_sorted_1(s->a) == 0 && ft_get_slen(s->a) == 3)
 			ft_sort_3(s);
-//		ft_print_stack3(s);
+//		ft_print_stack4(s);
 	}
 	while (ft_get_slen(s->b) > 0)
 		ft_start_swaping(s);
+	ft_index(s->a);
 	while (ft_is_sorted(s) == 0)
 	{
 		if (ft_find_turn(s) > ft_get_slen(s->a) / 2)
@@ -541,7 +535,7 @@ void		ft_start_pushing(t_stacks *s)
 		else
 			ft_do_cmd_0("ra", 1, s);
 	}
-//	ft_print_stack3(s);
+//	ft_print_stack4(s);
 }
 
 int			main(int argc, char **argv)
@@ -552,6 +546,7 @@ int			main(int argc, char **argv)
 	s->flag_print = 1;
 	ft_start_pushing(s);
 //	printf("CMD_COUNTS: %d\n", s->cmd_counter);
+	ft_stacks_free(&s);
 	return (1);
 }
 

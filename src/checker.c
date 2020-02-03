@@ -21,7 +21,7 @@ int			main(int argc, char **argv)
 	s = ft_create_stack(argc, argv);
 	if (s->a == NULL)
 	{
-		ft_put_error(&s);
+//		ft_put_error(&s);
 		return (0);
 	}
 	while (get_next_line(0, &cmd))
@@ -35,5 +35,6 @@ int			main(int argc, char **argv)
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
+	ft_stacks_free(&s);
 	return (1);
 }
