@@ -12,6 +12,13 @@
 
 #include "push_swap.h"
 
+int 		ft_last_elem(t_stack *a)
+{
+	while(a && a->next)
+		a = a->next;
+	return (a->val);
+}
+
 void		ft_index(t_stack *s)
 {
 	int i;
@@ -175,6 +182,31 @@ int			ft_check_unsort(t_stacks *s)
 	return (1);
 }
 
+int			ft_same_sort_in_end(t_stack *a, int i)
+{
+	t_stack	*temp;
+	int		move;
+	int		prev;
+
+	temp = a;
+	move = ft_get_slen(a) - i;
+	while (move)
+	{
+		temp = temp->next;
+		move--;
+	}
+	prev = temp->val;
+	temp = temp->next;
+	while (temp)
+	{
+		if (prev > temp->val)
+			return (0);
+		prev = temp->val;
+		temp = temp->next;
+	}
+	return (1);
+}
+
 void		ft_move_unsort_3(t_stacks *s)
 {
 	int		i;
@@ -189,10 +221,16 @@ void		ft_move_unsort_3(t_stacks *s)
 
 	if (ft_find_i_after_sort2(s->a) >= 3)
 	{
-		ft_do_cmd_0("ra", ft_get_slen(s->a) - i, s);
+		//проверить наличие такого же отсортированного участка в самом конце стака
+		if (ft_same_sort_in_end(s->a, ft_find_i_after_sort2(s->a)) == 0)
+			ft_do_cmd_0("ra", ft_get_slen(s->a) - i, s);
 		while (i)
 		{
-			ft_do_cmd_0("pb", 1, s);
+			if (s->a->val < ft_last_elem(s->a))
+				ft_do_cmd_0("pb", 1, s);
+			else
+				ft_do_cmd_0("ra", 1, s);
+
 			if (ft_check_sort(s->a) == 1)
 				return ;
 			i--;
@@ -507,7 +545,8 @@ void		ft_do_route2(t_stacks *s)
 void 		ft_do_route3(t_stacks *s)
 {
 	ft_do_cmd_0("ra", s->ind_a, s);
-	ft_do_cmd_0("rrb", (s->len_b - s->ind_b), s);
+	if (s->len_b > 1)
+		ft_do_cmd_0("rrb", (s->len_b - s->ind_b), s);
 	ft_do_cmd_0("pa", 1, s);
 	if (s->a->val > s->a->next->val)
 		ft_do_cmd_0("ra", 1, s);
@@ -585,13 +624,6 @@ int			ft_find_turn(t_stacks *s)
 		temp = temp->next;
 	}
 	return (0);
-}
-
-int 		ft_last_elem(t_stack *a)
-{
-	while(a && a->next)
-		a = a->next;
-	return (a->val);
 }
 
 void		ft_check_last(t_stacks *s)
