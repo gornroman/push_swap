@@ -255,6 +255,7 @@ void	ft_sort_3_2(t_stacks *s)
 
 void		ft_sort_3(t_stacks *s)
 {
+//	printf("start ft_sort_3\n");
 	if (s->a->val > s->a->next->val)
 	{
 		if (s->a->val < s->a->next->next->val)
@@ -277,6 +278,7 @@ void		ft_sort_3(t_stacks *s)
 		else
 			ft_do_cmd_0("rra", 1, s);
 	}
+//	printf("finish ft_sort_3\n");
 }
 
 int			ft_is_sorted_1(t_stack *s)
@@ -630,6 +632,7 @@ void		ft_check_last(t_stacks *s)
 {
 	int 	last_elem;
 
+	printf("ft_check_last\n");
 	if (ft_check_sort(s->a) == 0)
 		return ;
 	last_elem = ft_last_elem(s->a);
@@ -639,6 +642,7 @@ void		ft_check_last(t_stacks *s)
 //		s->a = s->a->next;
 		last_elem = ft_last_elem(s->a);
 	}
+	printf("ft_check_last finish\n");
 }
 
 int			ft_find_sorts(t_stack *s, int max)
@@ -696,12 +700,260 @@ int 		ft_count_sorts(t_stack *s)
 	}
 	return (ft_find_sorts(s, max));
 }
+
+int		ft_find_last_2(t_stack *s, int max)
+{
+	t_stack	*tmp;
+	int		prev;
+	int 	count_sort;
+
+	tmp = s;
+	count_sort = 1;
+	prev = tmp->val;
+	tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->val > prev)
+		{
+			count_sort++;
+			if (count_sort == max)
+				return (tmp->i);
+		}
+		else
+			count_sort = 1;
+		prev = tmp->val;
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int			ft_find_last(t_stack *s)
+{
+	int 	max;
+	int 	prev;
+	int 	new_max;
+	t_stack	*tmp;
+
+	tmp = s;
+	prev = tmp->val;
+	new_max = 1;
+	max = 1;
+	tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->val > prev)
+		{
+			new_max++;
+			if (new_max > max)
+				max = new_max;
+		}
+		else
+			new_max = 1;
+		prev = tmp->val;
+		tmp = tmp->next;
+	}
+	return (ft_find_last_2(s, max));
+}
+
+int			ft_find_len_of_sort(t_stack *s)
+{
+	int 	max;
+	int 	prev;
+	int 	new_max;
+	t_stack	*tmp;
+
+	tmp = s;
+	prev = tmp->val;
+	new_max = 1;
+	max = 1;
+	tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->val > prev)
+		{
+			new_max++;
+			if (new_max > max)
+				max = new_max;
+		}
+		else
+			new_max = 1;
+		prev = tmp->val;
+		tmp = tmp->next;
+	}
+	return (max);
+}
+
+void 		ft_first_sort_one(t_stacks *s)
+{
+	int 	last_of_sort;
+	int 	len_of_sort;
+	int 	before_sort;
+	int 	after_sort;
+
+	last_of_sort = ft_find_last(s->a) + 1;
+//	printf("last of first sort: %d\n", last_of_sort);
+	len_of_sort = ft_find_len_of_sort(s->a);
+//	printf("len of sort: %d\n", len_of_sort);
+	before_sort = last_of_sort - len_of_sort;
+//	printf("before sort: %d\n", before_sort);
+	after_sort = ft_get_slen(s->a) - last_of_sort;
+//	printf("after sort: %d\n", after_sort);
+	if ((before_sort + len_of_sort + after_sort) < (after_sort + after_sort + before_sort))
+	{
+//		printf("1.1st var\n");
+		ft_do_cmd_0("pb", before_sort, s);
+		ft_do_cmd_0("ra", len_of_sort, s);
+		while (after_sort)
+		{
+			if (s->a->val < ft_last_elem(s->a)  && ft_get_slen(s->a) > 3)
+				ft_do_cmd_0("pb", 1, s);
+			else if (ft_get_slen(s->a) > 3)
+				ft_do_cmd_0("ra", 1, s);
+
+			if (ft_check_sort(s->a) == 1)
+				return ;
+			after_sort--;
+		}
+	}
+	else
+	{
+//		printf("1.2nd var\n");
+		ft_do_cmd_0("rra", after_sort, s);
+		while (after_sort)
+		{
+			if (s->a->val < ft_last_elem(s->a) && ft_get_slen(s->a) > 3)
+				ft_do_cmd_0("pb", 1, s);
+			else if (ft_get_slen(s->a) > 3)
+				ft_do_cmd_0("ra", 1, s);
+
+			if (ft_check_sort(s->a) == 1)
+				return ;
+			after_sort--;
+		}
+		while (before_sort)
+		{
+			if (s->a->val < ft_last_elem(s->a) && ft_get_slen(s->a) > 3)
+				ft_do_cmd_0("pb", 1, s);
+			else if (ft_get_slen(s->a) > 3)
+				ft_do_cmd_0("ra", 1, s);
+
+			if (ft_check_sort(s->a) == 1)
+				return ;
+			before_sort--;
+		}
+	}
+}
+
+int			ft_get_last_sort(t_stacks *s, int max)
+{
+	t_stack	*tmp;
+	int		prev;
+	int 	count_sort;
+	int 	res;
+
+	res = 0;
+	tmp = s->a;
+	count_sort = 1;
+	prev = tmp->val;
+	tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->val > prev)
+		{
+			count_sort++;
+			if (count_sort == max)
+				res = tmp->i + 1;
+		}
+		else
+			count_sort = 1;
+		prev = tmp->val;
+		tmp = tmp->next;
+	}
+	return (res);
+}
+
+void		ft_help_pb(t_stacks *s, int count)
+{
+	while (count)
+	{
+		if (s->a->val < ft_last_elem(s->a) && ft_get_slen(s->a) > 3)
+			ft_do_cmd_0("pb", 1, s);
+		else if (ft_get_slen(s->a) > 3)
+			ft_do_cmd_0("ra", 1, s);
+
+		if (ft_check_sort(s->a) == 1)
+			return ;
+		count--;
+	}
+}
+
+void		ft_first_sort_many(t_stacks *s)
+{
+	int 	last_of_sort;
+	int 	len_of_sort;
+	int 	before_first_sort;
+	int 	after_first_sort;
+	int 	last_of_last_sort;
+	int 	len_of_a;
+
+	len_of_a = ft_get_slen(s->a);
+//	printf("many sorts\n");
+	last_of_sort = ft_find_last(s->a) + 1;
+//	printf("last of first sort: %d\n", last_of_sort);
+	len_of_sort = ft_find_len_of_sort(s->a);
+//	printf("len of sort: %d\n", len_of_sort);
+	before_first_sort = last_of_sort - len_of_sort;
+//	printf("before first sort: %d\n", before_first_sort);
+	after_first_sort = ft_get_slen(s->a) - last_of_sort;
+//	printf("after first sort: %d\n", after_first_sort);
+	last_of_last_sort = ft_get_last_sort(s, len_of_sort);
+//	printf("last of last sort: %d\n", last_of_last_sort);
+	if ((before_first_sort + len_of_sort + (len_of_a - before_first_sort - 2 * len_of_sort - (len_of_a - last_of_last_sort)) + len_of_sort + (len_of_a - last_of_last_sort))
+		< (2 * (len_of_a - last_of_last_sort) + before_first_sort + len_of_sort + (len_of_a - before_first_sort - 2 * len_of_sort - (len_of_a - last_of_last_sort))))
+	{
+//		printf("2.1 var\n");
+//		ft_do_cmd_0("pb", before_first_sort, s);
+//		ft_do_cmd_0("ra", len_of_sort, s);
+//		ft_do_cmd_0("pb", (len_of_a - before_first_sort - 2 * len_of_sort - (len_of_a - last_of_last_sort)), s);
+//		ft_do_cmd_0("pb", len_of_sort, s);
+//		ft_do_cmd_0("pb", (len_of_a - last_of_last_sort), s);
+
+//		ft_help_pb(s, before_first_sort);
+		ft_do_cmd_0("pb", before_first_sort, s);
+		ft_do_cmd_0("ra", len_of_sort, s);
+		ft_help_pb(s, (len_of_a - before_first_sort - 2 * len_of_sort - (len_of_a - last_of_last_sort)));
+		ft_help_pb(s, len_of_sort);
+		ft_help_pb(s, (len_of_a - last_of_last_sort));
+	}
+	else
+	{
+//		printf("2.2 var\n");
+//		ft_do_cmd_0("rra", (len_of_a - last_of_last_sort), s);
+//		ft_do_cmd_0("pb", (len_of_a - last_of_last_sort), s);
+//		ft_do_cmd_0("pb", before_first_sort, s);
+//		ft_do_cmd_0("pb", len_of_sort, s);
+//		ft_do_cmd_0("pb", (len_of_a - before_first_sort - 2 * len_of_sort - (len_of_a - last_of_last_sort)), s);
+		ft_do_cmd_0("rra", (len_of_a - last_of_last_sort), s);
+		ft_help_pb(s, (len_of_a - last_of_last_sort));
+		ft_help_pb(s, before_first_sort);
+		ft_help_pb(s, len_of_sort);
+		ft_help_pb(s, (len_of_a - before_first_sort - 2 * len_of_sort - (len_of_a - last_of_last_sort)));
+//		printf("2.2 var finish\n");
+	}
+}
+
 void		ft_first_sort(t_stacks *s)
 {
-	if (ft_count_sorts(s->a) == 1)
+	ft_index(s->a);
+	if (ft_count_sorts(s->a) == 0)
 	{
-		printf("");
+		ft_do_cmd_0("pb", ft_get_slen(s->a) - 3, s);
+		return ;
 	}
+	if (ft_count_sorts(s->a) == 1)
+		ft_first_sort_one(s);
+	else
+		ft_first_sort_many(s);
 }
 
 void		ft_start_pushing(t_stacks *s)
@@ -714,16 +966,17 @@ void		ft_start_pushing(t_stacks *s)
 //		printf("5elemetns algo\n");
 	else if (ft_is_sorted_1(s->a) == 0)
 	{
-//		ft_first_sort(s);
-		// прошлый вариант:
-		ft_move_unsort(s);
-		ft_check_last(s);
-		ft_index(s->a);
-		s->sort_from_start == 1 ? ft_move_unsort_3(s) : ft_move_unsort(s);
+		ft_first_sort(s);
+//		// прошлый вариант:
+//		ft_move_unsort(s);
+//		ft_check_last(s);
+//		ft_index(s->a);
+//		s->sort_from_start == 1 ? ft_move_unsort_3(s) : ft_move_unsort(s);
 		if (ft_is_sorted_1(s->a) == 0 && ft_get_slen(s->a) == 3)
 			ft_sort_3(s);
 //		ft_print_stack4(s);
 	}
+
 	while (ft_get_slen(s->b) > 0)
 		ft_start_swaping(s);
 	ft_index(s->a);
