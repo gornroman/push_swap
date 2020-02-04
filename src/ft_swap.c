@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgroleo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:32:18 by jgroleo           #+#    #+#             */
-/*   Updated: 2020/02/04 17:21:05 by jgroleo          ###   ########.fr       */
+/*   Updated: 2020/02/04 17:32:19 by jgroleo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			main(int argc, char **argv)
+int			ft_swap(t_stacks *s)
 {
-	t_stacks	*s;
-	char		*cmd;
+	int		min_route;
+	int		a_ind;
+	int		comb;
 
-	cmd = NULL;
-	s = ft_create_stack(argc, argv);
-	if (s->a == NULL)
-	{
-		return (0);
-	}
-	while (get_next_line(0, &cmd))
-	{
-		if (ft_do_cmd(cmd, s) == 0)
-			ft_put_error(&s);
-		if (cmd)
-			free(cmd);
-	}
-	if (ft_is_sorted(s))
-		ft_putstr("OK\n");
+	a_ind = ft_find_a_place(s);
+	if (s->firstlen > 5)
+		comb = ft_find_comb_bigger5(s, a_ind);
 	else
-		ft_putstr("KO\n");
-	ft_stacks_free(&s);
-	return (1);
+		comb = ft_find_comb(s, a_ind);
+	min_route = ft_find_route(s, comb, a_ind);
+	s->tmp_comb = comb;
+	s->tmp_ind_a = a_ind;
+	s->tmp_ind_b = s->tmp_b->i;
+	return (min_route);
 }

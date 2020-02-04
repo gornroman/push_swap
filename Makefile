@@ -6,34 +6,32 @@
 #    By: jgroleo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/30 12:40:12 by jgroleo           #+#    #+#              #
-#    Updated: 2020/01/30 12:44:42 by jgroleo          ###   ########.fr        #
+#    Updated: 2020/02/04 18:23:20 by jgroleo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME_LIB 		= libft/libft.a
-
-HEADER_NAME		= push_swap.h
-NAME_PS                 = push_swap
-NAME_CHECK 		= checker
-
-INC_DIR 		= ./includes/
-INC_LIB_FT 		= ./libft/includes/
-SRC_DIR 		= ./src/
-OBJ_DIR 		= ./obj/
-
-SRC_NAME_CHECK	= etc.c checker.c
-SRC_NAME_PS     = etc.c push_swap.c
-
-HEADER                  = $(addprefix $(INC_DIR), $(HEADER_NAME))
-
-SRC_PS                  = $(addprefix $(SRC_PATH), $(SRC_NAME_PS))
-SRC_CHECK               = $(addprefix $(SRC_PATH), $(SRC_NAME_CHECK))
-OBJ_PS                  = $(addprefix $(OBJ_DIR), $(SRC_NAME_PS:.c=.o))
-OBJ_CHECK               = $(addprefix $(OBJ_DIR), $(SRC_NAME_CHECK:.c=.o))
-
-CC                              = gcc
-FLAGS                   = -Wall -Wextra -Werror
-GCC_LIBFT               = -L ./libft -l ft
+NAME_LIB = libft/libft.a
+HEADER_NAME	= push_swap.h
+NAME_PS = push_swap
+NAME_CHECK = checker
+INC_DIR = ./includes/
+INC_LIB_FT = ./libft/includes/
+SRC_DIR = ./src/
+OBJ_DIR = ./obj/
+SRC_NAME_CHECK	= check.c do_route.c etc.c etc2.c find_route.c ft_cmd.c \
+				  ft_find.c ft_help.c ft_stacks.c ft_stacks2.c ft_stacks3.c \
+				  ft_swap.c print.c ft_prnt_cmd.c checker.c
+SRC_NAME_PS     = check.c do_route.c etc.c etc2.c find_route.c ft_cmd.c \
+				  ft_find.c ft_help.c ft_stacks.c ft_stacks2.c ft_stacks3.c \
+				  ft_swap.c print.c ft_prnt_cmd.c push_swap.c
+HEADER = $(addprefix $(INC_DIR), $(HEADER_NAME))
+SRC_PS = $(addprefix $(SRC_PATH), $(SRC_NAME_PS))
+SRC_CHECK = $(addprefix $(SRC_PATH), $(SRC_NAME_CHECK))
+OBJ_PS = $(addprefix $(OBJ_DIR), $(SRC_NAME_PS:.c=.o))
+OBJ_CHECK = $(addprefix $(OBJ_DIR), $(SRC_NAME_CHECK:.c=.o))
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
+GCC_LIBFT = -L ./libft -l ft
 
 all: $(NAME_PS) $(NAME_CHECK)
 
